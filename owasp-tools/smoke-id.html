@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report OWASP Rekon Aman - 127.0.0.1</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --ink: #18202f;
+      --muted: #687386;
+      --line: #dbe1ea;
+      --blue: #2458d3;
+      --green: #16704b;
+      --gold: #a16d07;
+      --red: #b42318;
+      --slate: #334155;
+      --shadow: 0 16px 38px rgba(24, 32, 47, .08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a {
+      color: var(--blue);
+      word-break: break-word;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 42px 0 28px;
+      color: white;
+      background: #111827;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 34px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+    }
+
+    .mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: var(--blue);
+    }
+
+    .meta {
+      color: #cbd5e1;
+      font-size: 14px;
+      text-align: right;
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 860px;
+      margin-bottom: 12px;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 780px;
+      margin-bottom: 0;
+      color: #d8dee9;
+      font-size: 18px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: -28px;
+    }
+
+    .summary-card,
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .summary-card {
+      padding: 20px;
+    }
+
+    .summary-card span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .summary-card strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1.15;
+      word-break: break-word;
+    }
+
+    main {
+      padding: 34px 0 60px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .panel {
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcff;
+    }
+
+    .panel-head h2,
+    .panel-head h3 {
+      margin-bottom: 0;
+      font-size: 18px;
+    }
+
+    .panel-body {
+      padding: 20px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 5px;
+      background: #eef2f7;
+      color: #263247;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      word-break: break-word;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .pill.info { color: #1d4ed8; background: #dbeafe; }
+    .pill.low { color: #166534; background: #dcfce7; }
+    .pill.medium { color: #92400e; background: #fef3c7; }
+    .pill.high { color: #991b1b; background: #fee2e2; }
+    .pill.scope { color: #334155; background: #e2e8f0; }
+
+    .finding {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .finding:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .finding-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-weight: 850;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfcff;
+      word-break: break-word;
+    }
+
+    .owasp-item {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .owasp-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .owasp-id {
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: #eef2ff;
+      color: #1d4ed8;
+      font-weight: 900;
+    }
+
+    .status {
+      display: inline-block;
+      margin: 4px 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    footer {
+      padding: 24px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .summary,
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .meta {
+        text-align: left;
+      }
+
+      .summary,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .owasp-item {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <span class="mark">R</span>
+          <span>OWASP Rekon Aman</span>
+        </div>
+        <div class="meta">
+          <div>Versi 1.0.0</div>
+          <div>2026-05-03T10:40:18.166725+00:00</div>
+        </div>
+      </div>
+      <h1>Report Recon Aman untuk 127.0.0.1</h1>
+      <p class="lead">Recon pasif dan pemeriksaan ringan yang dipetakan ke OWASP Top 10. Report ini tidak membuktikan eksploitasi; item bertanda manual perlu validasi terotorisasi.</p>
+    </div>
+  </header>
+
+  <div class="wrap summary">
+    <div class="summary-card">
+      <span>Target</span>
+      <strong>http://127.0.0.1/</strong>
+    </div>
+    <div class="summary-card">
+      <span>HTTP</span>
+      <strong>N/A</strong>
+    </div>
+    <div class="summary-card">
+      <span>Temuan</span>
+      <strong>0</strong>
+    </div>
+    <div class="summary-card">
+      <span>Durasi</span>
+      <strong>0.35s</strong>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Ringkasan Target</h2>
+        <span class="pill scope">Masuk scope</span>
+      </div>
+      <div class="panel-body table-wrap">
+        <table>
+          <tbody>
+            <tr><th>Host</th><td>127.0.0.1</td></tr>
+            <tr><th>Domain Terdaftar</th><td>127.0.0.1</td></tr>
+            <tr><th>URL Final</th><td><a href="http://127.0.0.1/">http://127.0.0.1/</a></td></tr>
+            <tr><th>Tipe Konten</th><td>-</td></tr>
+            <tr><th>Server</th><td>-</td></tr>
+            <tr><th>Catatan Scope</th><td>File scope tidak diberikan. Target dianggap sudah diizinkan oleh pengguna.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="panel">
+        <div class="panel-head"><h2>Record DNS</h2></div>
+        <div class="panel-body table-wrap">
+          <table>
+            <thead><tr><th>Tipe</th><th>Nilai</th></tr></thead>
+            <tbody>
+              
+              <tr>
+                <td><code>A</code></td>
+                <td>-</td>
+              </tr>
+              
+              <tr>
+                <td><code>AAAA</code></td>
+                <td>-</td>
+              </tr>
+              
+              <tr>
+                <td><code>CNAME</code></td>
+                <td>-</td>
+              </tr>
+              
+              <tr>
+                <td><code>MX</code></td>
+                <td>-</td>
+              </tr>
+              
+              <tr>
+                <td><code>NS</code></td>
+                <td>-</td>
+              </tr>
+              
+              <tr>
+                <td><code>TXT</code></td>
+                <td>-</td>
+              </tr>
+              
+              <tr>
+                <td><code>CAA</code></td>
+                <td>-</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><h2>TLS & Header</h2></div>
+        <div class="panel-body table-wrap">
+          <table>
+            <tbody>
+              <tr><th>Versi TLS</th><td>-</td></tr>
+              <tr><th>Sertifikat Kedaluwarsa</th><td>-</td></tr>
+              <tr><th>Sisa Hari</th><td>-</td></tr>
+              <tr><th>Header Belum Ada</th><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="grid">
+      <section class="panel">
+        <div class="panel-head"><h2>Temuan</h2></div>
+        <div class="panel-body">
+          
+            <p class="muted">Tidak ada temuan dari pemeriksaan aman.</p>
+          
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><h2>Teknologi</h2></div>
+        <div class="panel-body">
+          
+          <p class="muted">Tidak ada fingerprint teknologi yang terdeteksi.</p>
+          
+        </div>
+      </section>
+    </div>
+
+    <div class="grid">
+      <section class="panel">
+        <div class="panel-head"><h2>Cookie</h2></div>
+        <div class="panel-body table-wrap">
+          <table>
+            <thead><tr><th>Nama</th><th>Secure</th><th>HttpOnly</th><th>SameSite</th></tr></thead>
+            <tbody>
+              
+              <tr><td colspan="4" class="muted">Tidak ada header Set-Cookie yang terlihat.</td></tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><h2>Form & Parameter</h2></div>
+        <div class="panel-body">
+          <p><strong>Form:</strong> 0</p>
+          <p><strong>Parameter:</strong> 0</p>
+          
+        </div>
+      </section>
+    </div>
+
+    <section class="panel" style="margin-top: 18px;">
+      <div class="panel-head"><h2>OWASP Top 10 Mapping</h2></div>
+      <div class="panel-body">
+        
+        <article class="owasp-item">
+          <div class="owasp-id">A01</div>
+          <div>
+            <h3>Broken Access Control</h3>
+            <span class="status">Perlu validasi manual</span>
+            <p><strong>Bukti:</strong> Recon aman otomatis tidak bisa membuktikan kelemahan otorisasi.</p>
+            <p class="muted"><strong>Langkah aman berikutnya:</strong> Review role yang sudah login, object ID, rute admin, dan pengecekan otorisasi sisi server.</p>
+          </div>
+        </article>
+        
+        <article class="owasp-item">
+          <div class="owasp-id">A02</div>
+          <div>
+            <h3>Kegagalan Kriptografi</h3>
+            <span class="status">Pemeriksaan selesai</span>
+            <p><strong>Bukti:</strong> HSTS: belum ada, TLS: tidak diketahui, cookie direview: 0</p>
+            <p class="muted"><strong>Langkah aman berikutnya:</strong> Pastikan alur HTTPS-only, cookie Secure, kebijakan HSTS, dan pembaruan sertifikat.</p>
+          </div>
+        </article>
+        
+        <article class="owasp-item">
+          <div class="owasp-id">A03</div>
+          <div>
+            <h3>Injection</h3>
+            <span class="status">Hanya indikator pasif</span>
+            <p><strong>Bukti:</strong> Form: 0, parameter mirip input: 0. Tidak ada payload yang dikirim.</p>
+            <p class="muted"><strong>Langkah aman berikutnya:</strong> Uji validasi input secara manual di environment yang terotorisasi.</p>
+          </div>
+        </article>
+        
+        <article class="owasp-item">
+          <div class="owasp-id">A04</div>
+          <div>
+            <h3>Desain Tidak Aman</h3>
+            <span class="status">Perlu validasi manual</span>
+            <p><strong>Bukti:</strong> Kelemahan desain perlu review alur bisnis.</p>
+            <p class="muted"><strong>Langkah aman berikutnya:</strong> Threat-model alur penting: signup, pembayaran, upload, reset password, dan approval workflow.</p>
+          </div>
+        </article>
+        
+        <article class="owasp-item">
+          <div class="owasp-id">A05</div>
+          <div>
+            <h3>Kesalahan Konfigurasi Keamanan</h3>
+            <span class="status">Pemeriksaan selesai</span>
+            <p><strong>Bukti:</strong> Header belum ada: tidak ada yang terdeteksi</p>
+            <p class="muted"><strong>Langkah aman berikutnya:</strong> Perbaiki header yang belum ada, hilangkan error verbose, dan batasi file publik yang tidak perlu.</p>
+          </div>
+        </article>
+        
+        <article class="owasp-item">
+          <div class="owasp-id">A06</div>
+          <div>
+            <h3>Komponen Rentan dan Usang</h3>
+            <span class="status">Hanya fingerprint</span>
+            <p><strong>Bukti:</strong> Teknologi terdeteksi: tidak ada fingerprint</p>
+            <p class="muted"><strong>Langkah aman berikutnya:</strong> Bandingkan versi yang sudah dikonfirmasi dengan advisory vendor dan kebijakan patch.</p>
+          </div>
+        </article>
+        
+        <article class="owasp-item">
+          <div class="owasp-id">A07</div>
+          <div>
+            <h3>Kegagalan Identifikasi dan Autentikasi</h3>
+            <span class="status">Hanya indikator pasif</span>
+            <p><strong>Bukti:</strong> Form password ditemukan: 0. Tidak ada percobaan login.</p>
+            <p class="muted"><strong>Langkah aman berikutnya:</strong> Review MFA, kebijakan password, lockout/rate limit, rotasi session, dan alur reset.</p>
+          </div>
+        </article>
+        
+        <article class="owasp-item">
+          <div class="owasp-id">A08</div>
+          <div>
+            <h3>Kegagalan Integritas Software dan Data</h3>
+            <span class="status">Indikasi header dan asset</span>
+            <p><strong>Bukti:</strong> CSP: belum ada, teknologi: 0</p>
+            <p class="muted"><strong>Langkah aman berikutnya:</strong> Review integritas dependency, SRI untuk script pihak ketiga, kontrol CI/CD, dan rilis bertanda tangan.</p>
+          </div>
+        </article>
+        
+        <article class="owasp-item">
+          <div class="owasp-id">A09</div>
+          <div>
+            <h3>Kegagalan Logging dan Monitoring Keamanan</h3>
+            <span class="status">Perlu validasi manual</span>
+            <p><strong>Bukti:</strong> Recon eksternal tidak bisa memastikan cakupan logging internal.</p>
+            <p class="muted"><strong>Langkah aman berikutnya:</strong> Validasi audit log untuk event auth, aksi admin, error, alert, dan handoff incident response.</p>
+          </div>
+        </article>
+        
+        <article class="owasp-item">
+          <div class="owasp-id">A10</div>
+          <div>
+            <h3>Server-Side Request Forgery</h3>
+            <span class="status">Hanya indikator pasif</span>
+            <p><strong>Bukti:</strong> Parameter mirip URL ditemukan: 0. Tidak ada request SSRF.</p>
+            <p class="muted"><strong>Langkah aman berikutnya:</strong> Review manual fitur yang mengambil URL dan terapkan allowlist, kontrol egress jaringan, serta blok IP metadata.</p>
+          </div>
+        </article>
+        
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="panel">
+        <div class="panel-head"><h2>URL Sitemap</h2></div>
+        <div class="panel-body">
+          
+          <p class="muted">Tidak ada URL sitemap yang dikembalikan.</p>
+          
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><h2>File Publik Umum</h2></div>
+        <div class="panel-body table-wrap">
+          <table>
+            <thead><tr><th>Path</th><th>Status</th><th>Tipe</th></tr></thead>
+            <tbody>
+              
+              <tr><td colspan="3" class="muted">Belum ada pemeriksaan selesai.</td></tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    
+    <section class="panel" style="margin-top: 18px;">
+      <div class="panel-head"><h2>Peringatan & Error</h2></div>
+      <div class="panel-body">
+        <ul class="list">
+          
+          <li>Lookup DNS A gagal: All nameservers failed to answer the query 127.0.0.1. IN A: Server Do53:8.8.8.8@53 answered [Errno 1] Operation not permitted</li>
+          
+          <li>Lookup DNS AAAA gagal: All nameservers failed to answer the query 127.0.0.1. IN AAAA: Server Do53:8.8.8.8@53 answered [Errno 1] Operation not permitted</li>
+          
+          <li>GET http://127.0.0.1/: [Errno 1] Operation not permitted</li>
+          
+          <li>GET http://127.0.0.1/robots.txt: [Errno 1] Operation not permitted</li>
+          
+          <li>GET http://127.0.0.1/sitemap.xml: [Errno 1] Operation not permitted</li>
+          
+          <li>GET http://127.0.0.1/.well-known/security.txt: [Errno 1] Operation not permitted</li>
+          
+          <li>GET http://127.0.0.1/robots.txt: [Errno 1] Operation not permitted</li>
+          
+          <li>GET http://127.0.0.1/sitemap.xml: [Errno 1] Operation not permitted</li>
+          
+          <li>GET http://127.0.0.1/humans.txt: [Errno 1] Operation not permitted</li>
+          
+          <li>GET http://127.0.0.1/ads.txt: [Errno 1] Operation not permitted</li>
+          
+          <li>GET http://127.0.0.1/app-ads.txt: [Errno 1] Operation not permitted</li>
+          
+          <li>GET http://127.0.0.1/manifest.json: [Errno 1] Operation not permitted</li>
+          
+          <li>GET http://127.0.0.1/.well-known/change-password: [Errno 1] Operation not permitted</li>
+          
+        </ul>
+      </div>
+    </section>
+    
+  </main>
+
+  <footer>
+    <div class="wrap">OWASP Rekon Aman membuat report lokal ini untuk review defensif yang terotorisasi.</div>
+  </footer>
+</body>
+</html>

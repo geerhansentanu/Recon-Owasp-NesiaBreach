@@ -1,0 +1,7 @@
+# Isi domain yang memang kamu punya izin untuk cek.
+# Satu domain per baris. Wildcard subdomain didukung.
+#
+# contoh:
+# example.com
+# *.example.com
+hackersploit.org

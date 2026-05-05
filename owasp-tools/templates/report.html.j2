@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report {{ app_name }} - {{ ctx.host }}</title>
+  <style>
+    :root {
+      --bg: #05070d;
+      --panel: #0b1120;
+      --panel-2: #0f172a;
+      --ink: #e6f7ff;
+      --muted: #8aa4b8;
+      --line: #1f3347;
+      --cyan: #22d3ee;
+      --green: #39ff88;
+      --gold: #facc15;
+      --red: #fb7185;
+      --violet: #a78bfa;
+      --shadow: 0 18px 50px rgba(0, 0, 0, .38), 0 0 28px rgba(34, 211, 238, .08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(rgba(57, 255, 136, .04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 211, 238, .035) 1px, transparent 1px),
+        radial-gradient(circle at 18% 8%, rgba(34, 211, 238, .15), transparent 28%),
+        radial-gradient(circle at 78% 0%, rgba(57, 255, 136, .12), transparent 26%),
+        #05070d;
+      background-size: 34px 34px, 34px 34px, auto, auto, auto;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(rgba(255,255,255,.035) 50%, transparent 50%);
+      background-size: 100% 4px;
+      opacity: .18;
+    }
+
+    a {
+      color: var(--cyan);
+      word-break: break-word;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 42px 0 34px;
+      color: var(--ink);
+      border-bottom: 1px solid rgba(34, 211, 238, .28);
+      background:
+        linear-gradient(180deg, rgba(15, 23, 42, .96), rgba(5, 7, 13, .72)),
+        repeating-linear-gradient(90deg, rgba(57, 255, 136, .05) 0 1px, transparent 1px 80px);
+      box-shadow: 0 22px 80px rgba(0, 0, 0, .35);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 34px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #03130a;
+      background: var(--green);
+      box-shadow: 0 0 22px rgba(57, 255, 136, .38);
+      font-weight: 950;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 14px;
+      text-align: right;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    h1, h2, h3, p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 860px;
+      margin-bottom: 12px;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 1;
+      letter-spacing: 0;
+      text-shadow: 0 0 24px rgba(34, 211, 238, .22);
+    }
+
+    .lead {
+      max-width: 780px;
+      margin-bottom: 0;
+      color: #b7c8d8;
+      font-size: 18px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: -28px;
+    }
+
+    .summary-card,
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .summary-card::before,
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05), inset 0 0 0 1px rgba(57,255,136,.035);
+    }
+
+    .summary-card {
+      padding: 20px;
+    }
+
+    .summary-card span {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .summary-card strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1.15;
+      word-break: break-word;
+      color: var(--ink);
+    }
+
+    main {
+      padding: 34px 0 60px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .panel {
+      overflow: hidden;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(90deg, rgba(34, 211, 238, .12), rgba(57, 255, 136, .06), transparent);
+    }
+
+    .panel-head h2,
+    .panel-head h3 {
+      margin-bottom: 0;
+      font-size: 18px;
+      color: var(--cyan);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .panel-body {
+      padding: 20px;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    code {
+      padding: 2px 5px;
+      border-radius: 5px;
+      background: rgba(34, 211, 238, .11);
+      color: #9ff6ff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      word-break: break-word;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .pill.info { color: #9ff6ff; background: rgba(34, 211, 238, .15); border: 1px solid rgba(34, 211, 238, .32); }
+    .pill.low { color: #b7ffce; background: rgba(57, 255, 136, .14); border: 1px solid rgba(57, 255, 136, .32); }
+    .pill.medium { color: #fde68a; background: rgba(250, 204, 21, .14); border: 1px solid rgba(250, 204, 21, .32); }
+    .pill.high { color: #fecdd3; background: rgba(251, 113, 133, .15); border: 1px solid rgba(251, 113, 133, .36); }
+    .pill.scope { color: #d8ffe6; background: rgba(57, 255, 136, .12); border: 1px solid rgba(57, 255, 136, .32); }
+
+    .finding {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .finding:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .finding-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-weight: 850;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(15, 23, 42, .82);
+      word-break: break-word;
+    }
+
+    .owasp-item {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .owasp-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .owasp-id {
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: rgba(34, 211, 238, .12);
+      color: var(--green);
+      border: 1px solid rgba(34, 211, 238, .25);
+      font-weight: 900;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .status {
+      display: inline-block;
+      margin: 4px 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    footer {
+      padding: 24px 0;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+      background: rgba(5, 7, 13, .72);
+    }
+
+    @media (max-width: 900px) {
+      .summary,
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .meta {
+        text-align: left;
+      }
+
+      .summary,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .owasp-item {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand">
+          <span class="mark">R</span>
+          <span>{{ app_name }} // {{ author }}</span>
+        </div>
+        <div class="meta">
+          <div>Versi {{ version }}</div>
+          <div>{{ ctx.started_at }}</div>
+        </div>
+      </div>
+      <h1>Report Recon Aman untuk {{ ctx.host }}</h1>
+      <p class="lead">Recon pasif dan pemeriksaan ringan yang dipetakan ke OWASP Top 10. Report ini tidak membuktikan eksploitasi; item bertanda manual perlu validasi terotorisasi.</p>
+    </div>
+  </header>
+
+  <div class="wrap summary">
+    <div class="summary-card">
+      <span>Target</span>
+      <strong>{{ ctx.normalized_url }}</strong>
+    </div>
+    <div class="summary-card">
+      <span>HTTP</span>
+      <strong>{{ ctx.http.status_code | default("N/A") }}</strong>
+    </div>
+    <div class="summary-card">
+      <span>Temuan</span>
+      <strong>{{ ctx.findings | length }}</strong>
+    </div>
+    <div class="summary-card">
+      <span>Durasi</span>
+      <strong>{{ ctx.elapsed_seconds }}s</strong>
+    </div>
+  </div>
+
+  <main class="wrap">
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Ringkasan Target</h2>
+        <span class="pill scope">{{ "Masuk scope" if ctx.in_scope else "Di luar scope" }}</span>
+      </div>
+      <div class="panel-body table-wrap">
+        <table>
+          <tbody>
+            <tr><th>Host</th><td>{{ ctx.host }}</td></tr>
+            <tr><th>Domain Terdaftar</th><td>{{ ctx.registered_domain }}</td></tr>
+            <tr><th>URL Final</th><td><a href="{{ ctx.http.url | default(ctx.normalized_url) }}">{{ ctx.http.url | default(ctx.normalized_url) }}</a></td></tr>
+            <tr><th>Tipe Konten</th><td>{{ ctx.http.content_type | default("-") }}</td></tr>
+            <tr><th>Server</th><td>{{ ctx.http.server | default("-") }}</td></tr>
+            <tr><th>Catatan Scope</th><td>{{ ctx.scope_notes | join("; ") }}</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="panel">
+        <div class="panel-head"><h2>Record DNS</h2></div>
+        <div class="panel-body table-wrap">
+          <table>
+            <thead><tr><th>Tipe</th><th>Nilai</th></tr></thead>
+            <tbody>
+              {% for rtype, values in ctx.dns.items() %}
+              <tr>
+                <td><code>{{ rtype }}</code></td>
+                <td>{{ values | join("<br>") if values else "-" }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><h2>TLS & Header</h2></div>
+        <div class="panel-body table-wrap">
+          <table>
+            <tbody>
+              <tr><th>Versi TLS</th><td>{{ ctx.tls.version | default("-") }}</td></tr>
+              <tr><th>Sertifikat Kedaluwarsa</th><td>{{ ctx.tls.not_after | default("-") }}</td></tr>
+              <tr><th>Sisa Hari</th><td>{{ ctx.tls.days_until_expiry | default("-") }}</td></tr>
+              <tr><th>Header Belum Ada</th><td>{{ ctx.http.security_headers.missing | default([]) | join(", ") if ctx.http.security_headers is defined else "-" }}</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <div class="grid">
+      <section class="panel">
+        <div class="panel-head"><h2>Temuan</h2></div>
+        <div class="panel-body">
+          {% if ctx.findings %}
+            {% for finding in ctx.findings %}
+            <article class="finding">
+              <div class="finding-title">
+                <span class="pill {{ finding.severity | lower }}">{{ {"Info": "Info", "Low": "Rendah", "Medium": "Sedang", "High": "Tinggi"}.get(finding.severity, finding.severity) }}</span>
+                <span>{{ finding.title }}</span>
+              </div>
+              <p class="muted"><strong>Kategori:</strong> {{ finding.category }}</p>
+              <p><strong>Bukti:</strong> {{ finding.evidence }}</p>
+              <p class="muted"><strong>Rekomendasi:</strong> {{ finding.recommendation }}</p>
+            </article>
+            {% endfor %}
+          {% else %}
+            <p class="muted">Tidak ada temuan dari pemeriksaan aman.</p>
+          {% endif %}
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><h2>Teknologi</h2></div>
+        <div class="panel-body">
+          {% if ctx.technologies %}
+          <ul class="list">
+            {% for tech in ctx.technologies %}
+            <li>{{ tech }}</li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p class="muted">Tidak ada fingerprint teknologi yang terdeteksi.</p>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+
+    <div class="grid">
+      <section class="panel">
+        <div class="panel-head"><h2>Cookie</h2></div>
+        <div class="panel-body table-wrap">
+          <table>
+            <thead><tr><th>Nama</th><th>Secure</th><th>HttpOnly</th><th>SameSite</th></tr></thead>
+            <tbody>
+              {% for cookie in ctx.cookies %}
+              <tr>
+                <td><code>{{ cookie.name }}</code></td>
+                <td>{{ "ya" if cookie.secure else "tidak" }}</td>
+                <td>{{ "ya" if cookie.httponly else "tidak" }}</td>
+                <td>{{ "ya" if cookie.samesite else "tidak" }}</td>
+              </tr>
+              {% else %}
+              <tr><td colspan="4" class="muted">Tidak ada header Set-Cookie yang terlihat.</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><h2>Form & Parameter</h2></div>
+        <div class="panel-body">
+          <p><strong>Form:</strong> {{ ctx.forms | length }}</p>
+          <p><strong>Parameter:</strong> {{ ctx.params | length }}</p>
+          {% if ctx.params %}
+          <ul class="list">
+            {% for param in ctx.params[:20] %}
+            <li><code>{{ param.name }}</code> - {{ param.notes | join("; ") }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+
+    <section class="panel" style="margin-top: 18px;">
+      <div class="panel-head"><h2>OWASP Top 10 Mapping</h2></div>
+      <div class="panel-body">
+        {% for item in ctx.owasp %}
+        <article class="owasp-item">
+          <div class="owasp-id">{{ item.id }}</div>
+          <div>
+            <h3>{{ item.name }}</h3>
+            <span class="status">{{ item.status }}</span>
+            <p><strong>Bukti:</strong> {{ item.evidence }}</p>
+            <p class="muted"><strong>Langkah aman berikutnya:</strong> {{ item.safe_next_step }}</p>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <div class="grid">
+      <section class="panel">
+        <div class="panel-head"><h2>URL Sitemap</h2></div>
+        <div class="panel-body">
+          {% if ctx.sitemap.urls %}
+          <ul class="list">
+            {% for url in ctx.sitemap.urls[:30] %}
+            <li><a href="{{ url }}">{{ url }}</a></li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p class="muted">Tidak ada URL sitemap yang dikembalikan.</p>
+          {% endif %}
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head"><h2>File Publik Umum</h2></div>
+        <div class="panel-body table-wrap">
+          <table>
+            <thead><tr><th>Path</th><th>Status</th><th>Tipe</th></tr></thead>
+            <tbody>
+              {% for file in ctx.exposed_files %}
+              <tr>
+                <td><a href="{{ file.url }}">{{ file.path }}</a></td>
+                <td>{{ file.status_code }}</td>
+                <td>{{ file.content_type }}</td>
+              </tr>
+              {% else %}
+              <tr><td colspan="3" class="muted">Belum ada pemeriksaan selesai.</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    {% if ctx.errors %}
+    <section class="panel" style="margin-top: 18px;">
+      <div class="panel-head"><h2>Peringatan & Error</h2></div>
+      <div class="panel-body">
+        <ul class="list">
+          {% for error in ctx.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+    {% endif %}
+  </main>
+
+  <footer>
+    <div class="wrap">{{ app_name }} dibuat oleh {{ author }}. Report lokal ini untuk review defensif yang terotorisasi.</div>
+  </footer>
+</body>
+</html>

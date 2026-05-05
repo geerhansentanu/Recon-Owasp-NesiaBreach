@@ -1,0 +1,132 @@
+{
+  "target": "http://127.0.0.1",
+  "normalized_url": "http://127.0.0.1/",
+  "host": "127.0.0.1",
+  "registered_domain": "127.0.0.1",
+  "started_at": "2026-05-03T10:30:53.791027+00:00",
+  "elapsed_seconds": 0.49,
+  "in_scope": true,
+  "scope_notes": [
+    "No scope file supplied. Treating target as user-authorized."
+  ],
+  "dns": {
+    "A": [],
+    "AAAA": [],
+    "CNAME": [],
+    "MX": [],
+    "NS": [],
+    "TXT": [],
+    "CAA": []
+  },
+  "whois": {},
+  "http": {
+    "security_headers": {
+      "present": {},
+      "missing": []
+    }
+  },
+  "tls": {},
+  "robots": {
+    "url": "http://127.0.0.1/robots.txt",
+    "status_code": null,
+    "directives": []
+  },
+  "sitemap": {
+    "url": "http://127.0.0.1/sitemap.xml",
+    "status_code": null,
+    "urls": []
+  },
+  "cookies": [],
+  "forms": [],
+  "params": [],
+  "technologies": [],
+  "exposed_files": [],
+  "owasp": [
+    {
+      "id": "A01",
+      "name": "Broken Access Control",
+      "status": "Manual validation needed",
+      "evidence": "Automated safe recon cannot prove authorization flaws.",
+      "safe_next_step": "Review authenticated roles, object IDs, admin routes, and server-side authorization checks."
+    },
+    {
+      "id": "A02",
+      "name": "Cryptographic Failures",
+      "status": "Check complete",
+      "evidence": "HSTS: missing, TLS: unknown, cookies reviewed: 0",
+      "safe_next_step": "Confirm HTTPS-only flows, Secure cookies, HSTS policy, and certificate renewal."
+    },
+    {
+      "id": "A03",
+      "name": "Injection",
+      "status": "Passive indicators only",
+      "evidence": "Forms: 0, input-like params: 0. No payloads submitted.",
+      "safe_next_step": "Manually test input validation in an authorized test environment."
+    },
+    {
+      "id": "A04",
+      "name": "Insecure Design",
+      "status": "Manual validation needed",
+      "evidence": "Design flaws require business-flow review.",
+      "safe_next_step": "Threat-model critical flows: signup, payment, upload, password reset, and approval workflows."
+    },
+    {
+      "id": "A05",
+      "name": "Security Misconfiguration",
+      "status": "Check complete",
+      "evidence": "Missing headers: none detected",
+      "safe_next_step": "Fix missing headers, remove verbose errors, and restrict unnecessary public files."
+    },
+    {
+      "id": "A06",
+      "name": "Vulnerable and Outdated Components",
+      "status": "Fingerprint only",
+      "evidence": "Detected technologies: none fingerprinted",
+      "safe_next_step": "Compare confirmed versions against vendor advisories and patch policy."
+    },
+    {
+      "id": "A07",
+      "name": "Identification and Authentication Failures",
+      "status": "Passive indicators only",
+      "evidence": "Password forms found: 0. No login attempts performed.",
+      "safe_next_step": "Review MFA, password policy, lockout/rate limits, session rotation, and reset flows."
+    },
+    {
+      "id": "A08",
+      "name": "Software and Data Integrity Failures",
+      "status": "Header and asset hints",
+      "evidence": "CSP: missing, technologies: 0",
+      "safe_next_step": "Review dependency integrity, SRI for third-party scripts, CI/CD controls, and signed releases."
+    },
+    {
+      "id": "A09",
+      "name": "Security Logging and Monitoring Failures",
+      "status": "Manual validation needed",
+      "evidence": "External recon cannot confirm internal logging coverage.",
+      "safe_next_step": "Validate audit logs for auth events, admin actions, errors, alerts, and incident response handoff."
+    },
+    {
+      "id": "A10",
+      "name": "Server-Side Request Forgery",
+      "status": "Passive indicators only",
+      "evidence": "URL-like params found: 0. No SSRF requests performed.",
+      "safe_next_step": "Manually review URL-fetching features and enforce allowlists, network egress controls, and metadata IP blocks."
+    }
+  ],
+  "findings": [],
+  "errors": [
+    "DNS A lookup failed: All nameservers failed to answer the query 127.0.0.1. IN A: Server Do53:8.8.8.8@53 answered [Errno 1] Operation not permitted",
+    "DNS AAAA lookup failed: All nameservers failed to answer the query 127.0.0.1. IN AAAA: Server Do53:8.8.8.8@53 answered [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/robots.txt: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/sitemap.xml: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/.well-known/security.txt: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/robots.txt: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/sitemap.xml: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/humans.txt: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/ads.txt: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/app-ads.txt: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/manifest.json: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/.well-known/change-password: [Errno 1] Operation not permitted"
+  ]
+}

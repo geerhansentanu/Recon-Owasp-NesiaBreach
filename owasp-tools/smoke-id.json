@@ -1,0 +1,132 @@
+{
+  "target": "http://127.0.0.1",
+  "normalized_url": "http://127.0.0.1/",
+  "host": "127.0.0.1",
+  "registered_domain": "127.0.0.1",
+  "started_at": "2026-05-03T10:40:18.166725+00:00",
+  "elapsed_seconds": 0.35,
+  "in_scope": true,
+  "scope_notes": [
+    "File scope tidak diberikan. Target dianggap sudah diizinkan oleh pengguna."
+  ],
+  "dns": {
+    "A": [],
+    "AAAA": [],
+    "CNAME": [],
+    "MX": [],
+    "NS": [],
+    "TXT": [],
+    "CAA": []
+  },
+  "whois": {},
+  "http": {
+    "security_headers": {
+      "present": {},
+      "missing": []
+    }
+  },
+  "tls": {},
+  "robots": {
+    "url": "http://127.0.0.1/robots.txt",
+    "status_code": null,
+    "directives": []
+  },
+  "sitemap": {
+    "url": "http://127.0.0.1/sitemap.xml",
+    "status_code": null,
+    "urls": []
+  },
+  "cookies": [],
+  "forms": [],
+  "params": [],
+  "technologies": [],
+  "exposed_files": [],
+  "owasp": [
+    {
+      "id": "A01",
+      "name": "Broken Access Control",
+      "status": "Perlu validasi manual",
+      "evidence": "Recon aman otomatis tidak bisa membuktikan kelemahan otorisasi.",
+      "safe_next_step": "Review role yang sudah login, object ID, rute admin, dan pengecekan otorisasi sisi server."
+    },
+    {
+      "id": "A02",
+      "name": "Kegagalan Kriptografi",
+      "status": "Pemeriksaan selesai",
+      "evidence": "HSTS: belum ada, TLS: tidak diketahui, cookie direview: 0",
+      "safe_next_step": "Pastikan alur HTTPS-only, cookie Secure, kebijakan HSTS, dan pembaruan sertifikat."
+    },
+    {
+      "id": "A03",
+      "name": "Injection",
+      "status": "Hanya indikator pasif",
+      "evidence": "Form: 0, parameter mirip input: 0. Tidak ada payload yang dikirim.",
+      "safe_next_step": "Uji validasi input secara manual di environment yang terotorisasi."
+    },
+    {
+      "id": "A04",
+      "name": "Desain Tidak Aman",
+      "status": "Perlu validasi manual",
+      "evidence": "Kelemahan desain perlu review alur bisnis.",
+      "safe_next_step": "Threat-model alur penting: signup, pembayaran, upload, reset password, dan approval workflow."
+    },
+    {
+      "id": "A05",
+      "name": "Kesalahan Konfigurasi Keamanan",
+      "status": "Pemeriksaan selesai",
+      "evidence": "Header belum ada: tidak ada yang terdeteksi",
+      "safe_next_step": "Perbaiki header yang belum ada, hilangkan error verbose, dan batasi file publik yang tidak perlu."
+    },
+    {
+      "id": "A06",
+      "name": "Komponen Rentan dan Usang",
+      "status": "Hanya fingerprint",
+      "evidence": "Teknologi terdeteksi: tidak ada fingerprint",
+      "safe_next_step": "Bandingkan versi yang sudah dikonfirmasi dengan advisory vendor dan kebijakan patch."
+    },
+    {
+      "id": "A07",
+      "name": "Kegagalan Identifikasi dan Autentikasi",
+      "status": "Hanya indikator pasif",
+      "evidence": "Form password ditemukan: 0. Tidak ada percobaan login.",
+      "safe_next_step": "Review MFA, kebijakan password, lockout/rate limit, rotasi session, dan alur reset."
+    },
+    {
+      "id": "A08",
+      "name": "Kegagalan Integritas Software dan Data",
+      "status": "Indikasi header dan asset",
+      "evidence": "CSP: belum ada, teknologi: 0",
+      "safe_next_step": "Review integritas dependency, SRI untuk script pihak ketiga, kontrol CI/CD, dan rilis bertanda tangan."
+    },
+    {
+      "id": "A09",
+      "name": "Kegagalan Logging dan Monitoring Keamanan",
+      "status": "Perlu validasi manual",
+      "evidence": "Recon eksternal tidak bisa memastikan cakupan logging internal.",
+      "safe_next_step": "Validasi audit log untuk event auth, aksi admin, error, alert, dan handoff incident response."
+    },
+    {
+      "id": "A10",
+      "name": "Server-Side Request Forgery",
+      "status": "Hanya indikator pasif",
+      "evidence": "Parameter mirip URL ditemukan: 0. Tidak ada request SSRF.",
+      "safe_next_step": "Review manual fitur yang mengambil URL dan terapkan allowlist, kontrol egress jaringan, serta blok IP metadata."
+    }
+  ],
+  "findings": [],
+  "errors": [
+    "Lookup DNS A gagal: All nameservers failed to answer the query 127.0.0.1. IN A: Server Do53:8.8.8.8@53 answered [Errno 1] Operation not permitted",
+    "Lookup DNS AAAA gagal: All nameservers failed to answer the query 127.0.0.1. IN AAAA: Server Do53:8.8.8.8@53 answered [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/robots.txt: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/sitemap.xml: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/.well-known/security.txt: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/robots.txt: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/sitemap.xml: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/humans.txt: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/ads.txt: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/app-ads.txt: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/manifest.json: [Errno 1] Operation not permitted",
+    "GET http://127.0.0.1/.well-known/change-password: [Errno 1] Operation not permitted"
+  ]
+}

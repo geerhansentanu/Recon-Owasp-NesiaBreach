@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OWASP Rekon Aman // NesiaBreach</title>
+  <style>
+    :root {
+      --bg: #05070d;
+      --panel: #0b1120;
+      --ink: #eafff6;
+      --muted: #8ea7bb;
+      --line: #1d3448;
+      --green: #39ff88;
+      --cyan: #22d3ee;
+      --red: #fb7185;
+      --shadow: 0 22px 70px rgba(0, 0, 0, .45), 0 0 40px rgba(34, 211, 238, .08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(rgba(57, 255, 136, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 211, 238, .035) 1px, transparent 1px),
+        radial-gradient(circle at 18% 8%, rgba(34, 211, 238, .18), transparent 28%),
+        radial-gradient(circle at 84% 0%, rgba(57, 255, 136, .14), transparent 28%),
+        #05070d;
+      background-size: 34px 34px, 34px 34px, auto, auto, auto;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(rgba(255,255,255,.03) 50%, transparent 50%);
+      background-size: 100% 4px;
+      opacity: .16;
+    }
+
+    .wrap {
+      width: min(940px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 42px 0 28px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 54px;
+      color: var(--green);
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #02140a;
+      background: var(--green);
+      box-shadow: 0 0 25px rgba(57, 255, 136, .42);
+    }
+
+    .hero {
+      min-height: calc(100vh - 140px);
+      display: grid;
+      align-items: center;
+      padding-bottom: 52px;
+    }
+
+    h1, p { margin-top: 0; }
+
+    h1 {
+      max-width: 840px;
+      margin-bottom: 16px;
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: .92;
+      letter-spacing: 0;
+      text-shadow: 0 0 28px rgba(34, 211, 238, .22);
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-bottom: 28px;
+      color: #b7c8d8;
+      font-size: 18px;
+    }
+
+    .panel {
+      position: relative;
+      overflow: hidden;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(11, 17, 32, .92);
+      box-shadow: var(--shadow);
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05), inset 0 0 0 1px rgba(57,255,136,.035);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 850;
+      text-transform: uppercase;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .input-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+    }
+
+    input {
+      width: 100%;
+      min-height: 52px;
+      padding: 13px 14px;
+      border: 1px solid #244259;
+      border-radius: 8px;
+      outline: none;
+      color: var(--ink);
+      background: rgba(4, 7, 13, .82);
+      font: inherit;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, .13);
+    }
+
+    button,
+    .button {
+      min-height: 52px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 18px;
+      border: 1px solid rgba(57, 255, 136, .45);
+      border-radius: 8px;
+      color: #02140a;
+      background: var(--green);
+      box-shadow: 0 0 22px rgba(57, 255, 136, .18);
+      font-weight: 900;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .hint {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .step {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(15, 23, 42, .76);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--cyan);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .status {
+      min-height: 24px;
+      margin-top: 14px;
+      color: var(--cyan);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+    }
+
+    .danger {
+      color: var(--red);
+    }
+
+    footer {
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(4, 7, 13, .72);
+      font-size: 14px;
+    }
+
+    @media (max-width: 720px) {
+      .input-row,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      button,
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="brand"><span class="mark">NB</span><span>OWASP Rekon Aman // NesiaBreach</span></div>
+  </header>
+
+  <main class="wrap hero">
+    <div>
+      <h1>Masukkan Web. Jalankan Recon Aman.</h1>
+      <p class="lead">GitHub Pages tidak bisa menjalankan Python langsung, jadi tombol ini membuka GitHub Actions. Kamu cukup paste target ke form workflow, lalu download report HTML/JSON setelah selesai.</p>
+
+      <section class="panel">
+        <label for="target">Target Website</label>
+        <div class="input-row">
+          <input id="target" placeholder="https://example.com" autocomplete="off">
+          <button id="runBtn">Buka Actions</button>
+        </div>
+        <p class="hint">Tidak perlu token di halaman ini. Kamu hanya perlu login GitHub dan punya akses menjalankan Actions di repo.</p>
+        <div class="status" id="status">[idle] Input target, klik tombol, lalu paste di form GitHub Actions.</div>
+      </section>
+
+      <div class="steps">
+        <div class="step"><strong>01</strong> Klik `Buka Actions` dari halaman ini.</div>
+        <div class="step"><strong>02</strong> Klik `Run workflow`, paste target website.</div>
+        <div class="step"><strong>03</strong> Download artifact report setelah workflow selesai.</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">Dibuat oleh NesiaBreach. Gunakan hanya untuk target yang sudah terotorisasi.</div>
+  </footer>
+
+  <script>
+    const target = document.getElementById("target");
+    const statusEl = document.getElementById("status");
+    const runBtn = document.getElementById("runBtn");
+
+    function inferRepo() {
+      const host = location.hostname;
+      const path = location.pathname.split("/").filter(Boolean);
+      if (host.endsWith(".github.io") && path.length > 0) {
+        return `${host.replace(".github.io", "")}/${path[0]}`;
+      }
+      return "";
+    }
+
+    async function copyTarget() {
+      const value = target.value.trim();
+      if (!value) return;
+      try {
+        await navigator.clipboard.writeText(value);
+        statusEl.textContent = `[copied] Target disalin: ${value}`;
+      } catch {
+        statusEl.textContent = `[manual] Copy target ini: ${value}`;
+      }
+    }
+
+    runBtn.addEventListener("click", async () => {
+      const value = target.value.trim();
+      const repo = inferRepo();
+      if (!value) {
+        statusEl.innerHTML = '<span class="danger">[error] Isi target website dulu.</span>';
+        target.focus();
+        return;
+      }
+      await copyTarget();
+      if (!repo) {
+        statusEl.innerHTML = '<span class="danger">[error] Repo tidak bisa ditebak. Buka tab Actions di repository GitHub secara manual.</span>';
+        return;
+      }
+      const url = `https://github.com/${repo}/actions/workflows/recon.yml`;
+      window.open(url, "_blank", "noopener,noreferrer");
+      statusEl.textContent = `[next] Target sudah dicopy. Di tab GitHub Actions, klik Run workflow lalu paste target.`;
+    });
+  </script>
+</body>
+</html>

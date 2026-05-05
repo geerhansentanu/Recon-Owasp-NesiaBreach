@@ -1,0 +1,769 @@
+{
+  "target": "dev.brighton.co.id",
+  "normalized_url": "https://dev.brighton.co.id/",
+  "host": "dev.brighton.co.id",
+  "registered_domain": "brighton.co.id",
+  "started_at": "2026-05-04T10:48:54.537086+00:00",
+  "elapsed_seconds": 51.18,
+  "in_scope": true,
+  "scope_notes": [
+    "File scope tidak diberikan. Target dianggap sudah diizinkan oleh pengguna."
+  ],
+  "dns": {
+    "A": [
+      "34.126.135.128"
+    ],
+    "AAAA": [],
+    "CNAME": [],
+    "MX": [],
+    "NS": [],
+    "TXT": [],
+    "CAA": []
+  },
+  "whois": {
+    "domain_name": null,
+    "registrar": null,
+    "creation_date": null,
+    "expiration_date": null,
+    "updated_date": null,
+    "name_servers": null,
+    "status": null,
+    "emails": null
+  },
+  "http": {
+    "url": "https://dev.brighton.co.id/",
+    "status_code": 200,
+    "reason": "OK",
+    "history": [],
+    "headers": {
+      "server": "nginx/1.26.1",
+      "date": "Mon, 04 May 2026 10:49:43 GMT",
+      "content-type": "text/html; charset=utf-8",
+      "transfer-encoding": "chunked",
+      "connection": "keep-alive",
+      "set-cookie": "PHPSESSID=rk0q12rj15683vofksr8cguatb; path=/; HttpOnly, RelatedAgent=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=0; path=/",
+      "vary": "X-Forwarded-Protocol",
+      "last-modified": "Tue, 28 Apr 2026 04:34:59 GMT",
+      "cache-control": "no-cache, no-store, must-revalidate",
+      "content-encoding": "gzip"
+    },
+    "server": "nginx/1.26.1",
+    "content_type": "text/html; charset=utf-8",
+    "content_length": "",
+    "security_headers": {
+      "present": {
+        "HSTS": "",
+        "Content-Security-Policy": "",
+        "X-Content-Type-Options": "",
+        "X-Frame-Options": "",
+        "Referrer-Policy": "",
+        "Permissions-Policy": "",
+        "Cross-Origin-Opener-Policy": "",
+        "Cross-Origin-Resource-Policy": ""
+      },
+      "missing": [
+        "HSTS",
+        "Content-Security-Policy",
+        "X-Content-Type-Options",
+        "X-Frame-Options",
+        "Referrer-Policy",
+        "Permissions-Policy",
+        "Cross-Origin-Opener-Policy",
+        "Cross-Origin-Resource-Policy"
+      ]
+    }
+  },
+  "tls": {},
+  "robots": {
+    "url": "https://dev.brighton.co.id/robots.txt",
+    "status_code": 200,
+    "directives": [
+      {
+        "key": "User-agent",
+        "value": "*"
+      },
+      {
+        "key": "Disallow",
+        "value": "/"
+      }
+    ]
+  },
+  "sitemap": {
+    "url": "https://dev.brighton.co.id/sitemap.xml",
+    "status_code": 404,
+    "urls": [],
+    "count_returned": 0
+  },
+  "cookies": [
+    {
+      "name": "PHPSESSID",
+      "secure": false,
+      "httponly": true,
+      "samesite": false
+    }
+  ],
+  "forms": [
+    {
+      "method": "post",
+      "action": "https://dev.brighton.co.id/visitor/loginajax",
+      "inputs": [
+        {
+          "tag": "input",
+          "name": "Username",
+          "type": "text",
+          "id": "inputEmailDesktop"
+        },
+        {
+          "tag": "input",
+          "name": "Password",
+          "type": "password",
+          "id": "inputPassDesktop"
+        },
+        {
+          "tag": "input",
+          "name": "stayLogin",
+          "type": "checkbox",
+          "id": "stayLoginDesktop"
+        }
+      ]
+    },
+    {
+      "method": "post",
+      "action": "https://dev.brighton.co.id/agent/surabaya/CustomLoginForm",
+      "inputs": [
+        {
+          "tag": "input",
+          "name": "Email",
+          "type": "text",
+          "id": "agenEmail"
+        },
+        {
+          "tag": "input",
+          "name": "Password",
+          "type": "password",
+          "id": "agenPassword"
+        },
+        {
+          "tag": "input",
+          "name": "BackURL",
+          "type": "hidden",
+          "id": "Form_CustomLoginForm_BackURL"
+        },
+        {
+          "tag": "input",
+          "name": "SecurityID",
+          "type": "hidden",
+          "id": "Form_CustomLoginForm_SecurityID"
+        }
+      ]
+    },
+    {
+      "method": "post",
+      "action": "https://dev.brighton.co.id/visitor/loginajax",
+      "inputs": [
+        {
+          "tag": "input",
+          "name": "Username",
+          "type": "text",
+          "id": "inputEmailMob"
+        },
+        {
+          "tag": "input",
+          "name": "Password",
+          "type": "password",
+          "id": "inputPassMob"
+        },
+        {
+          "tag": "input",
+          "name": "stayLogin",
+          "type": "checkbox",
+          "id": "stayLoginMobile"
+        }
+      ]
+    },
+    {
+      "method": "post",
+      "action": "https://dev.brighton.co.id/agent/surabaya/CustomLoginForm",
+      "inputs": [
+        {
+          "tag": "input",
+          "name": "Email",
+          "type": "text",
+          "id": "agenEmailMobile"
+        },
+        {
+          "tag": "input",
+          "name": "Password",
+          "type": "password",
+          "id": "agenPasswordMobile"
+        },
+        {
+          "tag": "input",
+          "name": "BackURL",
+          "type": "hidden",
+          "id": "Form_CustomLoginForm_BackURL_Mobile"
+        },
+        {
+          "tag": "input",
+          "name": "SecurityID",
+          "type": "hidden",
+          "id": "Form_CustomLoginForm_SecurityID_Mobile"
+        }
+      ]
+    },
+    {
+      "method": "get",
+      "action": "https://dev.brighton.co.id/cari-properti/",
+      "inputs": [
+        {
+          "tag": "input",
+          "name": "Keyword",
+          "type": "text",
+          "id": "searchProperties"
+        },
+        {
+          "tag": "input",
+          "name": "Certificate",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "Province",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "Location",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "Area",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "Transaction",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "KT",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "KM",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LTMin",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LTMax",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LBMin",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LBMax",
+          "type": "hidden",
+          "id": ""
+        }
+      ]
+    },
+    {
+      "method": "get",
+      "action": "https://dev.brighton.co.id/dijual/",
+      "inputs": [
+        {
+          "tag": "input",
+          "name": "Keyword",
+          "type": "text",
+          "id": "searchPropertiesDijual"
+        },
+        {
+          "tag": "input",
+          "name": "Certificate",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "Province",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "Location",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "Area",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "KT",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "KM",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LTMin",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LTMax",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LBMin",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LBMax",
+          "type": "hidden",
+          "id": ""
+        }
+      ]
+    },
+    {
+      "method": "get",
+      "action": "https://dev.brighton.co.id/disewa/",
+      "inputs": [
+        {
+          "tag": "input",
+          "name": "Keyword",
+          "type": "text",
+          "id": "searchPropertiesDisewa"
+        },
+        {
+          "tag": "input",
+          "name": "Certificate",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "Province",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "Location",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "Area",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "KT",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "KM",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LTMin",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LTMax",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LBMin",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LBMax",
+          "type": "hidden",
+          "id": ""
+        }
+      ]
+    },
+    {
+      "method": "get",
+      "action": "https://dev.brighton.co.id/perumahan-baru/",
+      "inputs": [
+        {
+          "tag": "input",
+          "name": "Keyword",
+          "type": "text",
+          "id": "searchProyekBaru"
+        },
+        {
+          "tag": "input",
+          "name": "show",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "DeveloperID",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "Type",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LBMin",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "LBMax",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "OrderBy",
+          "type": "hidden",
+          "id": ""
+        }
+      ]
+    },
+    {
+      "method": "get",
+      "action": "https://dev.brighton.co.id/agent/surabaya/search",
+      "inputs": [
+        {
+          "tag": "input",
+          "name": "urutan",
+          "type": "hidden",
+          "id": ""
+        },
+        {
+          "tag": "input",
+          "name": "Keyword",
+          "type": "text",
+          "id": "searchAgen"
+        }
+      ]
+    },
+    {
+      "method": "get",
+      "action": "https://dev.brighton.co.id/",
+      "inputs": []
+    }
+  ],
+  "params": [
+    {
+      "name": "l",
+      "source": "link",
+      "url": "https://itunes.apple.com/id/app/brighton-real-estate-agents/id1203280367?l=id&mt=8",
+      "notes": [
+        "Parameter umum"
+      ]
+    },
+    {
+      "name": "mt",
+      "source": "link",
+      "url": "https://itunes.apple.com/id/app/brighton-real-estate-agents/id1203280367?l=id&mt=8",
+      "notes": [
+        "Parameter umum"
+      ]
+    },
+    {
+      "name": "id",
+      "source": "link",
+      "url": "https://play.google.com/store/apps/details?id=com.brightoncorporation&hl=en",
+      "notes": [
+        "Parameter mirip input; review penanganan injection"
+      ]
+    },
+    {
+      "name": "hl",
+      "source": "link",
+      "url": "https://play.google.com/store/apps/details?id=com.brightoncorporation&hl=en",
+      "notes": [
+        "Parameter umum"
+      ]
+    },
+    {
+      "name": "locale",
+      "source": "link",
+      "url": "https://dev.brighton.co.id/home/?locale=id_ID",
+      "notes": [
+        "Parameter umum"
+      ]
+    },
+    {
+      "name": "response_type",
+      "source": "link",
+      "url": "https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=online&client_id=884634099927-dtmcirk79pt1u97je5anr206tgvb691r.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdev.brighton.co.id%2Fvisitor%2Fsuccesslogingoogle&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&approval_prompt=auto",
+      "notes": [
+        "Parameter umum"
+      ]
+    },
+    {
+      "name": "access_type",
+      "source": "link",
+      "url": "https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=online&client_id=884634099927-dtmcirk79pt1u97je5anr206tgvb691r.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdev.brighton.co.id%2Fvisitor%2Fsuccesslogingoogle&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&approval_prompt=auto",
+      "notes": [
+        "Parameter umum"
+      ]
+    },
+    {
+      "name": "client_id",
+      "source": "link",
+      "url": "https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=online&client_id=884634099927-dtmcirk79pt1u97je5anr206tgvb691r.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdev.brighton.co.id%2Fvisitor%2Fsuccesslogingoogle&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&approval_prompt=auto",
+      "notes": [
+        "Parameter umum"
+      ]
+    },
+    {
+      "name": "redirect_uri",
+      "source": "link",
+      "url": "https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=online&client_id=884634099927-dtmcirk79pt1u97je5anr206tgvb691r.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdev.brighton.co.id%2Fvisitor%2Fsuccesslogingoogle&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&approval_prompt=auto",
+      "notes": [
+        "Parameter mirip URL; review risiko open redirect atau SSRF"
+      ]
+    },
+    {
+      "name": "scope",
+      "source": "link",
+      "url": "https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=online&client_id=884634099927-dtmcirk79pt1u97je5anr206tgvb691r.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdev.brighton.co.id%2Fvisitor%2Fsuccesslogingoogle&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&approval_prompt=auto",
+      "notes": [
+        "Parameter umum"
+      ]
+    },
+    {
+      "name": "approval_prompt",
+      "source": "link",
+      "url": "https://accounts.google.com/o/oauth2/auth?response_type=code&access_type=online&client_id=884634099927-dtmcirk79pt1u97je5anr206tgvb691r.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdev.brighton.co.id%2Fvisitor%2Fsuccesslogingoogle&state&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&approval_prompt=auto",
+      "notes": [
+        "Parameter umum"
+      ]
+    },
+    {
+      "name": "show",
+      "source": "link",
+      "url": "https://www.brighton.co.id/perumahan-baru/?show=overseas",
+      "notes": [
+        "Parameter umum"
+      ]
+    }
+  ],
+  "technologies": [
+    "Bootstrap",
+    "Nginx",
+    "Vue.js",
+    "jQuery"
+  ],
+  "exposed_files": [
+    {
+      "path": "/.well-known/security.txt",
+      "url": "https://dev.brighton.co.id/.well-known/security.txt",
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "interesting": false
+    },
+    {
+      "path": "/robots.txt",
+      "url": "https://dev.brighton.co.id/robots.txt",
+      "status_code": 200,
+      "content_type": "text/plain",
+      "interesting": true
+    },
+    {
+      "path": "/sitemap.xml",
+      "url": "https://dev.brighton.co.id/sitemap.xml",
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "interesting": false
+    },
+    {
+      "path": "/humans.txt",
+      "url": "https://dev.brighton.co.id/humans.txt",
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "interesting": false
+    },
+    {
+      "path": "/ads.txt",
+      "url": "https://dev.brighton.co.id/ads.txt",
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "interesting": false
+    },
+    {
+      "path": "/app-ads.txt",
+      "url": "https://dev.brighton.co.id/app-ads.txt",
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "interesting": false
+    },
+    {
+      "path": "/manifest.json",
+      "url": "https://dev.brighton.co.id/manifest.json",
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "interesting": false
+    },
+    {
+      "path": "/.well-known/change-password",
+      "url": "https://dev.brighton.co.id/.well-known/change-password",
+      "status_code": 404,
+      "content_type": "text/html; charset=utf-8",
+      "interesting": false
+    }
+  ],
+  "owasp": [
+    {
+      "id": "A01",
+      "name": "Broken Access Control",
+      "status": "Perlu validasi manual",
+      "evidence": "Recon aman otomatis tidak bisa membuktikan kelemahan otorisasi.",
+      "safe_next_step": "Review role yang sudah login, object ID, rute admin, dan pengecekan otorisasi sisi server."
+    },
+    {
+      "id": "A02",
+      "name": "Kegagalan Kriptografi",
+      "status": "Pemeriksaan selesai",
+      "evidence": "HSTS: belum ada, TLS: tidak diketahui, cookie direview: 1",
+      "safe_next_step": "Pastikan alur HTTPS-only, cookie Secure, kebijakan HSTS, dan pembaruan sertifikat."
+    },
+    {
+      "id": "A03",
+      "name": "Injection",
+      "status": "Hanya indikator pasif",
+      "evidence": "Form: 10, parameter mirip input: 0. Tidak ada payload yang dikirim.",
+      "safe_next_step": "Uji validasi input secara manual di environment yang terotorisasi."
+    },
+    {
+      "id": "A04",
+      "name": "Desain Tidak Aman",
+      "status": "Perlu validasi manual",
+      "evidence": "Kelemahan desain perlu review alur bisnis.",
+      "safe_next_step": "Threat-model alur penting: signup, pembayaran, upload, reset password, dan approval workflow."
+    },
+    {
+      "id": "A05",
+      "name": "Kesalahan Konfigurasi Keamanan",
+      "status": "Pemeriksaan selesai",
+      "evidence": "Header belum ada: HSTS, Content-Security-Policy, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy, Cross-Origin-Opener-Policy, Cross-Origin-Resource-Policy",
+      "safe_next_step": "Perbaiki header yang belum ada, hilangkan error verbose, dan batasi file publik yang tidak perlu."
+    },
+    {
+      "id": "A06",
+      "name": "Komponen Rentan dan Usang",
+      "status": "Hanya fingerprint",
+      "evidence": "Teknologi terdeteksi: Bootstrap, Nginx, Vue.js, jQuery",
+      "safe_next_step": "Bandingkan versi yang sudah dikonfirmasi dengan advisory vendor dan kebijakan patch."
+    },
+    {
+      "id": "A07",
+      "name": "Kegagalan Identifikasi dan Autentikasi",
+      "status": "Hanya indikator pasif",
+      "evidence": "Form password ditemukan: 4. Tidak ada percobaan login.",
+      "safe_next_step": "Review MFA, kebijakan password, lockout/rate limit, rotasi session, dan alur reset."
+    },
+    {
+      "id": "A08",
+      "name": "Kegagalan Integritas Software dan Data",
+      "status": "Indikasi header dan asset",
+      "evidence": "CSP: belum ada, teknologi: 4",
+      "safe_next_step": "Review integritas dependency, SRI untuk script pihak ketiga, kontrol CI/CD, dan rilis bertanda tangan."
+    },
+    {
+      "id": "A09",
+      "name": "Kegagalan Logging dan Monitoring Keamanan",
+      "status": "Perlu validasi manual",
+      "evidence": "Recon eksternal tidak bisa memastikan cakupan logging internal.",
+      "safe_next_step": "Validasi audit log untuk event auth, aksi admin, error, alert, dan handoff incident response."
+    },
+    {
+      "id": "A10",
+      "name": "Server-Side Request Forgery",
+      "status": "Hanya indikator pasif",
+      "evidence": "Parameter mirip URL ditemukan: 0. Tidak ada request SSRF.",
+      "safe_next_step": "Review manual fitur yang mengambil URL dan terapkan allowlist, kontrol egress jaringan, serta blok IP metadata."
+    }
+  ],
+  "findings": [
+    {
+      "title": "Header keamanan penting belum ada",
+      "severity": "Low",
+      "category": "A05 Kesalahan Konfigurasi Keamanan",
+      "evidence": "HSTS, Content-Security-Policy, X-Content-Type-Options",
+      "recommendation": "Tambahkan header keamanan yang sesuai setelah uji kompatibilitas, terutama HSTS, CSP, dan X-Content-Type-Options."
+    },
+    {
+      "title": "Cookie belum memakai flag yang disarankan: PHPSESSID",
+      "severity": "Low",
+      "category": "A02 Kegagalan Kriptografi",
+      "evidence": "Belum ada: secure, samesite",
+      "recommendation": "Aktifkan Secure, HttpOnly, dan SameSite jika kompatibel dengan alur aplikasi."
+    },
+    {
+      "title": "Form terdeteksi untuk review manual",
+      "severity": "Info",
+      "category": "A03 Injection",
+      "evidence": "10 form ditemukan. Tidak ada payload yang dikirim.",
+      "recommendation": "Validasi manual penanganan input sisi server, proteksi CSRF, dan logika otorisasi."
+    }
+  ],
+  "errors": [
+    "Lookup DNS AAAA gagal: The DNS response does not contain an answer to the question: dev.brighton.co.id. IN AAAA",
+    "Pemeriksaan TLS gagal: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:997)"
+  ]
+}
